@@ -20,6 +20,16 @@ const categoryColors: Record<string, string> = {
   'Probiotic': 'bg-brand-green-light text-brand-green-dark border-brand-green/25',
 };
 
+const categoryImages: Record<string, string> = {
+  'API': 'https://images.pexels.com/photos/3786157/pexels-photo-3786157.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop',
+  'Excipient': 'https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop',
+  'Herbal Extract': 'https://images.pexels.com/photos/4004168/pexels-photo-4004168.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop',
+  'Nutraceutical': 'https://images.pexels.com/photos/3683074/pexels-photo-3683074.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop',
+  'Cosmetic Ingredient': 'https://images.pexels.com/photos/3762879/pexels-photo-3762879.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop',
+  'Refined Oil': 'https://images.pexels.com/photos/725998/pexels-photo-725998.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop',
+  'Probiotic': 'https://images.pexels.com/photos/3825527/pexels-photo-3825527.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&fit=crop',
+};
+
 export default function FeaturedProducts({ products }: Props) {
   const { t, lang } = useLanguage();
 
@@ -44,24 +54,33 @@ export default function FeaturedProducts({ products }: Props) {
             const description = getDisplayDescription(product, lang);
             const badgeClass = categoryColors[product.category] || 'bg-gray-50 text-gray-600 border-gray-100';
             const waMessage = getEnquiryMessage(name, lang);
+            const cardImage = categoryImages[product.category] || categoryImages['API'];
             return (
-              <div key={product.id} className="bg-white border border-gray-200 rounded-xl hover:shadow-[0_8px_32px_rgba(12,35,64,0.12)] hover:border-brand-navy/20 transition-all duration-200 flex-shrink-0 w-[264px] flex flex-col snap-start">
-                <div className="p-5 flex flex-col flex-1">
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className={`text-[11px] font-medium px-2.5 py-0.5 rounded-full border ${badgeClass}`}>
+              <div key={product.id} className="bg-white border border-gray-200 rounded-xl hover:shadow-[0_8px_32px_rgba(12,35,64,0.12)] hover:border-brand-navy/20 transition-all duration-200 flex-shrink-0 w-[264px] flex flex-col snap-start overflow-hidden">
+                <div className="relative h-36 overflow-hidden">
+                  <img
+                    src={cardImage}
+                    alt={name}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2">
+                    <span className={`text-[10.5px] font-medium px-2 py-0.5 rounded-full border backdrop-blur-sm ${badgeClass}`}>
                       {getCategoryLabel(product.category, lang)}
                     </span>
                     {product.origin && (
-                      <span className="flex items-center gap-1 text-[11px] text-gray-400 flex-shrink-0">
-                        <MapPin size={10} />{product.origin}
+                      <span className="flex items-center gap-1 text-[10.5px] text-white/90 flex-shrink-0 drop-shadow">
+                        <MapPin size={9} />{product.origin}
                       </span>
                     )}
                   </div>
+                </div>
+                <div className="p-4 flex flex-col flex-1">
                   <h3 className="font-semibold text-brand-navy text-[13.5px] leading-snug mb-0.5">{name}</h3>
                   {product.inn && <p className="text-[12px] text-gray-400 italic mb-2">{product.inn}</p>}
                   <p className="text-[12px] text-gray-500 leading-relaxed flex-1 line-clamp-2">{description}</p>
                 </div>
-                <div className="px-5 pb-5 flex gap-2 border-t border-gray-100 pt-4">
+                <div className="px-4 pb-4 flex gap-2 border-t border-gray-100 pt-3">
                   <Link href={`/products/${product.slug}`} className="flex-1 text-center border border-gray-200 text-gray-600 hover:border-brand-navy hover:text-brand-navy text-[12px] font-semibold py-2 px-2 rounded-lg transition-colors duration-200">
                     {t('view_details')}
                   </Link>

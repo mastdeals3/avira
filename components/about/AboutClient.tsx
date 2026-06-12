@@ -35,8 +35,16 @@ export default function AboutClient() {
 
   return (
     <div className="bg-white">
-      <div className="bg-brand-navy">
-        <div className="container-main py-14 lg:py-18">
+      <div className="bg-brand-navy relative overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.pexels.com/photos/3938023/pexels-photo-3938023.jpeg?auto=compress&cs=tinysrgb&w=1400&h=500&fit=crop"
+            alt="Pharmaceutical raw material laboratory"
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-navy via-brand-navy/90 to-brand-navy/60" />
+        </div>
+        <div className="container-main py-14 lg:py-18 relative z-10">
           <div className="max-w-3xl">
             <p className="text-brand-green text-[11px] font-bold uppercase tracking-[0.15em] mb-3">
               {lang === 'id' ? 'Tentang Kami' : 'About Us'}
@@ -51,7 +59,7 @@ export default function AboutClient() {
 
       <div className="py-14 lg:py-18 bg-white">
         <div className="container-main">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.85fr] gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-12">
             <div>
               <p className="section-label">{lang === 'id' ? 'Profil Perusahaan' : 'Company Profile'}</p>
               <div className="section-divider" />
@@ -62,17 +70,36 @@ export default function AboutClient() {
                 {profile.map((text) => <p key={text}>{text}</p>)}
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              {strengths.map(({ icon: Icon, label, desc }) => (
-                <div key={label} className="bg-[#F4F7FA] border border-gray-200 rounded-xl p-5 hover:border-brand-navy/20 transition-all duration-200">
-                  <div className="w-10 h-10 bg-brand-navy/7 rounded-xl flex items-center justify-center mb-3">
-                    <Icon size={18} className="text-brand-navy" strokeWidth={1.5} />
+            <div className="relative rounded-2xl overflow-hidden shadow-[0_16px_48px_rgba(12,35,64,0.14)] h-72 lg:h-80">
+              <img
+                src="https://images.pexels.com/photos/3735747/pexels-photo-3735747.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+                alt="Pharmaceutical warehouse and distribution"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/50 to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4">
+                <div className="bg-white/95 backdrop-blur-sm rounded-xl p-3 flex items-center gap-3 shadow-lg">
+                  <div className="w-9 h-9 bg-brand-green/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <ShieldCheck size={17} className="text-brand-green" strokeWidth={1.6} />
                   </div>
-                  <p className="text-[13.5px] font-semibold text-brand-navy mb-0.5">{label}</p>
-                  <p className="text-[12px] text-gray-500">{desc}</p>
+                  <div>
+                    <p className="text-[11.5px] font-bold text-brand-navy leading-tight">CDOB Certified Distributor</p>
+                    <p className="text-[11px] text-gray-400 mt-0.5">No. CDOB5310/S/3-0684/03/2026</p>
+                  </div>
                 </div>
-              ))}
+              </div>
             </div>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {strengths.map(({ icon: Icon, label, desc }) => (
+              <div key={label} className="bg-[#F4F7FA] border border-gray-200 rounded-xl p-5 hover:border-brand-navy/20 transition-all duration-200">
+                <div className="w-10 h-10 bg-brand-navy/7 rounded-xl flex items-center justify-center mb-3">
+                  <Icon size={18} className="text-brand-navy" strokeWidth={1.5} />
+                </div>
+                <p className="text-[13.5px] font-semibold text-brand-navy mb-0.5">{label}</p>
+                <p className="text-[12px] text-gray-500">{desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

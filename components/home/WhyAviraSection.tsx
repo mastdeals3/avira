@@ -51,24 +51,53 @@ export default function WhyAviraSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
-          {items.map(({ icon: Icon, titleEn, titleId, descEn, descId }, idx) => (
-            <div key={titleEn} className="group relative bg-white border border-gray-200 rounded-xl p-6 hover:border-brand-navy/20 hover:shadow-[0_8px_32px_rgba(12,35,64,0.12)] transition-all duration-200">
-              <div className="flex items-start justify-between gap-3 mb-5">
-                <div className="w-11 h-11 rounded-xl bg-brand-navy/6 group-hover:bg-brand-navy/10 flex items-center justify-center flex-shrink-0 transition-colors duration-200">
-                  {mounted && <Icon size={21} className="text-brand-navy" strokeWidth={1.4} />}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {items.map(({ icon: Icon, titleEn, titleId, descEn, descId }, idx) => (
+              <div key={titleEn} className="group relative bg-white border border-gray-200 rounded-xl p-6 hover:border-brand-navy/20 hover:shadow-[0_8px_32px_rgba(12,35,64,0.12)] transition-all duration-200">
+                <div className="flex items-start justify-between gap-3 mb-5">
+                  <div className="w-11 h-11 rounded-xl bg-brand-navy/6 group-hover:bg-brand-navy/10 flex items-center justify-center flex-shrink-0 transition-colors duration-200">
+                    {mounted && <Icon size={21} className="text-brand-navy" strokeWidth={1.4} />}
+                  </div>
+                  <span className="text-[11px] text-gray-200 font-bold tracking-widest mt-1">0{idx + 1}</span>
                 </div>
-                <span className="text-[11px] text-gray-200 font-bold tracking-widest mt-1">0{idx + 1}</span>
+                <div className="w-8 h-[3px] bg-brand-green rounded-full mb-4" />
+                <h3 className="text-[11.5px] font-bold text-brand-navy mb-2.5 leading-snug tracking-wide uppercase">
+                  {lang === 'id' ? titleId : titleEn}
+                </h3>
+                <p className="text-[12.5px] text-gray-500 leading-relaxed">
+                  {lang === 'id' ? descId : descEn}
+                </p>
               </div>
-              <div className="w-8 h-[3px] bg-brand-green rounded-full mb-4" />
-              <h3 className="text-[11.5px] font-bold text-brand-navy mb-2.5 leading-snug tracking-wide uppercase">
-                {lang === 'id' ? titleId : titleEn}
-              </h3>
-              <p className="text-[12.5px] text-gray-500 leading-relaxed">
-                {lang === 'id' ? descId : descEn}
-              </p>
+            ))}
+          </div>
+
+          <div className="hidden lg:block space-y-4">
+            <div className="relative rounded-2xl overflow-hidden shadow-[0_12px_40px_rgba(12,35,64,0.14)] h-56">
+              <img
+                src="https://images.pexels.com/photos/3938022/pexels-photo-3938022.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
+                alt="Pharmaceutical warehouse operations"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/60 to-transparent" />
+              <div className="absolute bottom-3 left-3 right-3">
+                <p className="text-white text-[12px] font-semibold drop-shadow">Jakarta Warehouse</p>
+                <p className="text-white/70 text-[11px]">{lang === 'id' ? 'Pengiriman cepat dari stok lokal' : 'Fast dispatch from local stock'}</p>
+              </div>
             </div>
-          ))}
+            <div className="relative rounded-2xl overflow-hidden shadow-[0_12px_40px_rgba(12,35,64,0.14)] h-44">
+              <img
+                src="https://images.pexels.com/photos/356040/pexels-photo-356040.jpeg?auto=compress&cs=tinysrgb&w=600&h=350&fit=crop"
+                alt="Quality control and documentation"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/60 to-transparent" />
+              <div className="absolute bottom-3 left-3 right-3">
+                <p className="text-white text-[12px] font-semibold drop-shadow">GMP Documentation</p>
+                <p className="text-white/70 text-[11px]">COA · MSDS · Certificate of Origin</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
