@@ -90,4 +90,7 @@
   .section-label {
     @apply text-brand-navy/50 text-xs font-semibold uppercase tracking-widest;
   }
+  .section-divider {
+    @apply w-10 h-[3px] bg-brand-green rounded-full my-3;
+  }
 }

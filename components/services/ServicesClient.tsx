@@ -57,8 +57,16 @@ export default function ServicesClient() {
 
   return (
     <div className="bg-white">
-      <div className="bg-brand-navy">
-        <div className="container-main py-14 lg:py-18">
+      <div className="bg-brand-navy relative overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.pexels.com/photos/1427541/pexels-photo-1427541.jpeg?auto=compress&cs=tinysrgb&w=1400&h=500&fit=crop"
+            alt="Pharmaceutical supply chain and documentation"
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-navy via-brand-navy/90 to-brand-navy/50" />
+        </div>
+        <div className="container-main py-14 lg:py-18 relative z-10">
           <div className="max-w-3xl">
             <p className="text-brand-green text-[11px] font-bold uppercase tracking-[0.15em] mb-3">
               {lang === 'id' ? 'Layanan' : 'Services'}
